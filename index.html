@@ -9,10 +9,12 @@
     <link href="https://fonts.cdnfonts.com/css/notebook" rel="stylesheet" />
     <style>
       body {
-        background-color: #1a0a14;
+        background-color: #1a0010;
         background-image:
-          radial-gradient(ellipse at 20% 30%, rgba(160,30,60,0.25) 0%, transparent 60%),
-          radial-gradient(ellipse at 80% 70%, rgba(80,10,40,0.25) 0%, transparent 60%);
+          radial-gradient(ellipse at 50% 0%,   rgba(255,80,120,0.35) 0%, transparent 55%),
+          radial-gradient(ellipse at 10% 60%,  rgba(200,20,60,0.2)  0%, transparent 50%),
+          radial-gradient(ellipse at 90% 40%,  rgba(255,140,0,0.15) 0%, transparent 50%),
+          radial-gradient(ellipse at 50% 100%, rgba(120,0,60,0.3)   0%, transparent 55%);
         min-height: 100vh;
         overflow-x: hidden;
       }
@@ -75,11 +77,10 @@
   .subtitle {
     font-family: 'Notebook', cursive;
     font-style: normal;
-    color: red;
     font-size: clamp(1rem, 3.5vw, 1.3rem);
+    color: #ff2244;
     margin-top: 10px;
     letter-spacing: 0.5px;
-    animation: fadeUp 1.2s 0.3s cubic-bezier(.22,1,.36,1) both;
   }
   @keyframes dropIn {
     from { opacity: 0; transform: translateY(-36px); }
@@ -88,23 +89,6 @@
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(16px); }
     to   { opacity: 1; transform: translateY(0); }
-  }
-
-  /* ── Hint ── */
-  .hint {
-    position: relative; z-index: 2;
-    text-align: center;
-    margin: 14px auto 0;
-    color: rgba(255,200,210,0.45);
-    font-family: 'Notebook', cursive;
-    font-style: normal;
-    font-size: 0.88rem;
-    padding: 0 16px;
-    line-height: 1.6;
-  }
-  @keyframes hintPulse {
-    0%, 100% { opacity: 0.45; }
-    50%       { opacity: 0.9; }
   }
 
   /* ── Cake wrapper ── */
@@ -308,7 +292,6 @@
   /* ── Main app ── */
   document.addEventListener('DOMContentLoaded', function () {
     const cake  = document.getElementById('cake');
-    const hintEl = document.getElementById('hint');
     let candles  = [];
     let audioContext, analyser, microphone;
     let micReady = false;
@@ -354,7 +337,6 @@
       r.style.top  = (clientY - rect.top) + 'px';
       candle.appendChild(r);
       setTimeout(() => r.remove(), 500);
-      hintEl.textContent = '💨 Blow to put them out · Tap candle top to relight';
     }
 
     /* ── Extinguish ── */
